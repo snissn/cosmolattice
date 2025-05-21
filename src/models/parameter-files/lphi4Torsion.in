@@ -1,0 +1,52 @@
+#Output
+outputfile = ./
+
+#Evolution
+expansion = true
+evolver = VV2
+
+#Lattice
+N = 64
+dt = 0.01
+kIR = 0.75
+
+#Times
+tOutputFreq = 0.5
+tOutputInfreq = 5
+tMax = 800
+
+
+#Spectra options
+PS_type = 1
+PS_version = 1
+
+#GWs
+GWprojectorType = 1
+withGWs = false
+
+#IC
+kCutOff = 4
+initial_amplitudes = 0.01 0 0     # Small random initial fluctuations (field, NOT in GeV here)
+initial_momenta = 0 0 0           # Zero initial momenta (rest)
+field_snapshot = scalar_0(x) scalar_1(x) scalar_2(x)
+
+# --- Model (φ⁴) parameters ---
+lambda = 0.001                    # Try 0.1, 0.01, or 1 for different wall thickness
+q = 1                           # If present; usually for parametric resonance (set 1 if not using)
+
+# --- Symmetry-breaking scale (v) ---
+# Not present in all CosmoLattice models;
+# if supported, uncomment and set (otherwise your λ/φ⁴ defines the scale)
+v = 2
+
+
+# Model Torsion parameters
+alpha_torsion = 1.0
+mTorsion = 1.0      # mass parameter
+lambdaT = 0.1       # quartic self-interaction strength
+
+
+
+energy_snapshot = E_K E_G E_P
+
+

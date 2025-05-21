@@ -133,8 +133,14 @@ namespace TempLat {
         void kickScalar(Model &model, T w) {
 
            ForLoop(i, 0, Model::Ns - 1,
-           		model.piS(i) += (w * model.dt / 2) * ScalarSingletKernels::get(model, i) ;
-           			);
+                model.piS(i) += (w * model.dt / 2) * ScalarSingletKernels::get(model, i);
+
+                // Add EC-inspired torsion–momentum coupling ONLY for field 0 (phi_0)
+                if (i == 0) {
+                    // Element-wise multiply fldS(2_c) (torsion field) and piS(0_c) (momentum of phi_0)
+                    model.piS(0_c) += (w * model.dt / 2) * model.alpha_torsion * model.fldS(2_c) * model.piS(0_c);
+                }
+            );
         }
 
 		template<class Model>
